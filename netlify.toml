@@ -1,2 +1,2 @@
 [build]
-  publish = "library_management/templates"
+  publish = "templates"
