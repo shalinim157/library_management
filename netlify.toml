@@ -1,2 +1,7 @@
 [build]
-  publish = "templates"
+  publish = "."
+
+[[redirects]]
+  from = "/"
+  to = "/templates/index.html"
+  status = 200
