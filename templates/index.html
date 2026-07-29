@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Library Portal</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <h1>📚 Student Library System</h1>
+    <p>Manage Members, Catalog, & Borrowing Records</p>
+  </header>
+
+  <main class="container">
+    <div id="alert-box" class="alert hidden"></div>
+
+    <!-- Grid Layout -->
+    <div class="grid">
+      
+      <!-- Section 1: Member Registration -->
+      <section class="card">
+        <h2>🧑‍🎓 Student Membership</h2>
+        <form id="member-form">
+          <input type="text" id="m-id" placeholder="Student ID (e.g. STU101)" required>
+          <input type="text" id="m-name" placeholder="Full Name" required>
+          <input type="email" id="m-email" placeholder="Email Address" required>
+          <button type="submit" class="btn">Register Student</button>
+        </form>
+        
+        <h3>Registered Students</h3>
+        <ul id="members-list" class="data-list"></ul>
+      </section>
+
+      <!-- Section 2: Book Categories & Add Book -->
+      <section class="card">
+        <h2>🏷️ Categories & Books</h2>
+        <form id="category-form" class="inline-form">
+          <input type="text" id="c-name" placeholder="New Category Name" required>
+          <button type="submit" class="btn">Add Category</button>
+        </form>
+
+        <hr>
+
+        <h3>Add New Book</h3>
+        <form id="book-form">
+          <input type="text" id="b-title" placeholder="Book Title" required>
+          <input type="text" id="b-author" placeholder="Author" required>
+          <input type="text" id="b-isbn" placeholder="ISBN (Unique)" required>
+          <select id="b-category" required>
+            <option value="">Select Category</option>
+          </select>
+          <input type="number" id="b-copies" placeholder="Copies" min="1" value="1" required>
+          <button type="submit" class="btn">Add Book</button>
+        </form>
+      </section>
+
+    </div>
+
+    <!-- Section 3: Book Search & Borrowing -->
+    <section class="card mt">
+      <h2>📖 Library Book Catalog</h2>
+      <div class="filter-bar">
+        <input type="text" id="search-input" placeholder="Search by title, author, or ISBN...">
+        <button id="search-btn" class="btn">Search</button>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Category</th>
+            <th>Available</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="books-table-body"></tbody>
+      </table>
+    </section>
+
+    <!-- Section 4: Borrowing Records & Return -->
+    <section class="card mt">
+      <h2>📋 Borrowing & Return Management</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Record ID</th>
+            <th>Student</th>
+            <th>Book Title</th>
+            <th>Borrow Date</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Fine Due</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="records-table-body"></tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
