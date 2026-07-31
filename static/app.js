@@ -240,7 +240,7 @@ async function loadRecords() {
 async function returnBook(recordId) {
   try {
     // https://library-management-api-8co7.onrender.com
-    const res = await fetch(`https://library-management-api-8co7.onrender.com/return/api/return/${recordId}`,{
+    const res = await fetch(`https://library-management-api-8co7.onrender.com/api/return/${recordId}`,{
     // Ensure the path matches /api/return/1 exactly
     // const res = await fetch(`/api/return/${recordId}`, { 
       method: "POST" 
