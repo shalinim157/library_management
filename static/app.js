@@ -22,7 +22,8 @@ function showAlert(msg, isError = false) {
 // 1. Categories
 async function loadCategories() {
   try {
-    const res = await fetch("/api/categories");
+    const res = await fetch("https://library-management-api.onrender.com/api/categories");
+    // const res = await fetch("/api/categories");
     const categories = await res.json();
     const select = document.getElementById("b-category");
     select.innerHTML = '<option value="">Select Category</option>';
@@ -41,7 +42,8 @@ async function createCategory(e) {
   if (!name) return;
 
   try {
-    const res = await fetch("/api/categories", {
+    const res = await fetch("https://library-management-api.onrender.com/api/categories",{
+    // const res = await fetch("/api/categories", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: name })
@@ -60,7 +62,8 @@ async function createCategory(e) {
 // 2. Members
 async function loadMembers() {
   try {
-    const res = await fetch("/api/members");
+    const res = await fetch("https://library-management-api.onrender.com/api/members");
+    // const res = await fetch("/api/members");
     const members = await res.json();
     const list = document.getElementById("members-list");
     list.innerHTML = "";
@@ -81,7 +84,8 @@ async function createMember(e) {
   };
 
   try {
-    const res = await fetch("/api/members", {
+    const res = await fetch("https://library-management-api.onrender.com/api/members",{
+    // const res = await fetch("/api/members", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
@@ -105,8 +109,8 @@ async function loadBooks() {
     const url = search ? `/api/books?search=${encodeURIComponent(search)}` : "/api/books";
     const res = await fetch(url);
     const books = await res.json();
-
-    const memberRes = await fetch("/api/members");
+    const res = await fetch("https://library-management-api.onrender.com/api/members");
+    // const memberRes = await fetch("/api/members");
     const members = await memberRes.json();
 
     const tbody = document.getElementById("books-table-body");
@@ -150,7 +154,8 @@ async function createBook(e) {
   };
 
   try {
-    const res = await fetch("/api/books", {
+    const res = await fetch("https://library-management-api.onrender.com/api/books",{
+    // const res = await fetch("/api/books", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
@@ -173,7 +178,8 @@ async function borrowBook(bookId) {
 
   const memberId = memberSelect.value;
   try {
-    const res = await fetch("/api/borrow", {
+      const res = await fetch("https://library-management-api.onrender.com/api/borrow",{
+    // const res = await fetch("/api/borrow", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ member_id: parseInt(memberId), book_id: bookId })
@@ -191,7 +197,8 @@ async function borrowBook(bookId) {
 
 async function loadRecords() {
   try {
-    const res = await fetch("/api/records");
+    const res = await fetch("https://library-management-api.onrender.com/api/records");
+    // const res = await fetch("/api/records");
     const records = await res.json();
     const tbody = document.getElementById("records-table-body");
     tbody.innerHTML = "";
@@ -226,8 +233,9 @@ async function loadRecords() {
 // static/app.js
 async function returnBook(recordId) {
   try {
+    const res = await fetch(`https://library-management-api.onrender.com/return/api/return/${recordId}`,{
     // Ensure the path matches /api/return/1 exactly
-    const res = await fetch(`/api/return/${recordId}`, { 
+    // const res = await fetch(`/api/return/${recordId}`, { 
       method: "POST" 
     });
     

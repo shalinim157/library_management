@@ -6,7 +6,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.requests import Request
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
-
+from fastapi.middleware.cors import CORSMiddleware
 from database import engine, Base, get_db
 import models
 import schemas
@@ -15,6 +15,14 @@ import schemas
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Library Management System")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows Netlify and local test environments
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Mount Static & Template directories
 app.mount("/static", StaticFiles(directory="static"), name="static")
