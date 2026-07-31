@@ -22,7 +22,7 @@ function showAlert(msg, isError = false) {
 // 1. Categories
 async function loadCategories() {
   try {
-    const res = await fetch("https://library-management-api.onrender.com/api/categories");
+    const res = await fetch("https://library-management-api-8co7.onrender.com/api/categories");
     // const res = await fetch("/api/categories");
     const categories = await res.json();
     const select = document.getElementById("b-category");
@@ -42,7 +42,7 @@ async function createCategory(e) {
   if (!name) return;
 
   try {
-    const res = await fetch("https://library-management-api.onrender.com/api/categories",{
+    const res = await fetch("https://library-management-api-8co7.onrender.com/api/categories",{
     // const res = await fetch("/api/categories", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -62,7 +62,7 @@ async function createCategory(e) {
 // 2. Members
 async function loadMembers() {
   try {
-    const res = await fetch("https://library-management-api.onrender.com/api/members");
+    const res = await fetch("https://library-management-api-8co7.onrender.com/api/members");
     // const res = await fetch("/api/members");
     const members = await res.json();
     const list = document.getElementById("members-list");
@@ -84,7 +84,7 @@ async function createMember(e) {
   };
 
   try {
-    const res = await fetch("https://library-management-api.onrender.com/api/members",{
+    const res = await fetch("https://library-management-api-8co7.onrender.com/api/members",{
     // const res = await fetch("/api/members", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -106,10 +106,16 @@ async function createMember(e) {
 async function loadBooks() {
   try {
     const search = document.getElementById("search-input").value;
-    const url = search ? `/api/books?search=${encodeURIComponent(search)}` : "/api/books";
+
+    const BASE_URL = "https://library-management-api-8co7.onrender.com";
+// Build full URL with search query if present
+    const url = search 
+      ? `${BASE_URL}/api/books?search=${encodeURIComponent(search)}` 
+      : `${BASE_URL}/api/books`;
+    // const url = search ? `/api/books?search=${encodeURIComponent(search)}` : "/api/books";
     const res = await fetch(url);
     const books = await res.json();
-    const res = await fetch("https://library-management-api.onrender.com/api/members");
+    const res = await fetch("https://library-management-api-8co7.onrender.com/api/members");
     // const memberRes = await fetch("/api/members");
     const members = await memberRes.json();
 
@@ -154,7 +160,7 @@ async function createBook(e) {
   };
 
   try {
-    const res = await fetch("https://library-management-api.onrender.com/api/books",{
+    const res = await fetch("https://library-management-api-8co7.onrender.com/api/books",{
     // const res = await fetch("/api/books", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -178,7 +184,7 @@ async function borrowBook(bookId) {
 
   const memberId = memberSelect.value;
   try {
-      const res = await fetch("https://library-management-api.onrender.com/api/borrow",{
+      const res = await fetch("https://library-management-api-8co7.onrender.com/api/borrow",{
     // const res = await fetch("/api/borrow", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -197,7 +203,7 @@ async function borrowBook(bookId) {
 
 async function loadRecords() {
   try {
-    const res = await fetch("https://library-management-api.onrender.com/api/records");
+    const res = await fetch("https://library-management-api-8co7.onrender.com/api/records");
     // const res = await fetch("/api/records");
     const records = await res.json();
     const tbody = document.getElementById("records-table-body");
@@ -233,7 +239,8 @@ async function loadRecords() {
 // static/app.js
 async function returnBook(recordId) {
   try {
-    const res = await fetch(`https://library-management-api.onrender.com/return/api/return/${recordId}`,{
+    // https://library-management-api-8co7.onrender.com
+    const res = await fetch(`https://library-management-api-8co7.onrender.com/return/api/return/${recordId}`,{
     // Ensure the path matches /api/return/1 exactly
     // const res = await fetch(`/api/return/${recordId}`, { 
       method: "POST" 
