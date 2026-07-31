@@ -115,7 +115,7 @@ async function loadBooks() {
     // const url = search ? `/api/books?search=${encodeURIComponent(search)}` : "/api/books";
     const res = await fetch(url);
     const books = await res.json();
-    const res = await fetch("https://library-management-api-8co7.onrender.com/api/members");
+    const memberRes = await fetch("https://library-management-api-8co7.onrender.com/api/members");
     // const memberRes = await fetch("/api/members");
     const members = await memberRes.json();
 
